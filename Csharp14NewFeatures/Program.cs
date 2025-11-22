@@ -4,12 +4,36 @@ public class Program
 {
     public static void Main()
     {
+
+        #region Extension members using extension block syntax 
+
+        var numbers = new List<int> { 1, 2, 3 };
+        Console.WriteLine($"Extension property used. Numbers is empty? {numbers.IsEmpty}");
+        Console.WriteLine($"Extension property used. Numbers have items? {numbers.HasItems}");
+
+        var moreNumbers = new List<int> { 4, 5, 6 };
+        var combinedNumbers = numbers + moreNumbers; // Using the user-defined operator +
+
+        Console.WriteLine($"Here is the sequence of combinednumbers: {string.Join(",", combinedNumbers)}");
+
+        var evenMoreNumbers = new List<int> { 5, 3, 4 };
+
+        var numbersExceptEvenMoreNumbers = numbers - evenMoreNumbers; // Using the user-defined operator -
+
+        Console.WriteLine($"Here is the sequence of combinednumbers: {string.Join(",", numbersExceptEvenMoreNumbers)}");
+
+
+        #endregion 
+
+
+
+        #region NullReferenceAssignmentAndNewAccessors 
+
         var demos = new Csharp14NewFeaturesDemos
         {
             PropUsingRequiredCannotBeNullOrEmpty = "A test",
             PropUsingKeywordInit = 4999 // Value below 5000 to avoid ArgumentException
         };
-        demos.PropUsingFieldKeyword = "Hello, C# 14!";
         Console.WriteLine(demos.PropUsingFieldKeyword);
 
 
@@ -21,13 +45,16 @@ public class Program
         anotherClass?.Counter += 2;
         Console.WriteLine($"anotherClass.Counter = {anotherClass?.Counter}. Is anotherClass.Counter NULL ? {anotherClass?.Counter is null} : outputs NULL since anotherClass is still null");
         anotherClass = new AnotherClass();
-        anotherClass?.Counter -= 15;
+        anotherClass?.Counter -= 15;     
         Console.WriteLine($"anotherClass.Counter = {anotherClass?.Counter} : outputs -15 since anotherClass is not null");
+
+        #endregion 
     }
 }
 
 public class Csharp14NewFeaturesDemos
 {
+ 
 
     public required string PropUsingRequiredCannotBeNullOrEmpty
     {
@@ -35,7 +62,7 @@ public class Csharp14NewFeaturesDemos
         set
         {
             // 'required' accessor ensures the property must be set during object initialization
-            field = value ?? throw new ArgumentNullException(nameof(value), "Value cannot be null.");   
+            field = value ?? throw new ArgumentNullException(nameof(value), "Value cannot be null.");
         }
     }
 
