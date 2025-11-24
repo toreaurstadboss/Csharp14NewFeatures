@@ -1,9 +1,30 @@
-﻿namespace Csharp14NewFeatures;
+﻿using Csharp14NewFeatures.Csharp14NewFeatures;
+
+namespace Csharp14NewFeatures;
 
 public class Program
 {
     public static void Main()
     {
+
+        #region Extension metmbers using block syntax - Math
+
+        //Extension properties 
+        double radians = double.Pi / 3.0; // Pi/3 radians = 60 degrees (1 * Pi = 180 degrees) 
+        double degrees = radians * radians.Rad2Deg; // Using the extension method Rad2Deg
+
+        Console.WriteLine($"Radians: {radians:F6}"); //outputs 1.04719..
+        Console.WriteLine($"Degrees: {degrees:F6}"); //outputs 60
+
+        //Using Extension methods 
+
+        double radiansV2 = 1.0.GetPi() / 3.0;
+        double degreesV2 = radians * 1.0.GetRad2Deg();
+
+        Console.WriteLine($"Radians: {radiansV2:F6}");
+        Console.WriteLine($"Degrees: {degreesV2:F6}");
+
+        #endregion
 
         #region Extension members using extension block syntax 
 
@@ -24,8 +45,6 @@ public class Program
 
 
         #endregion 
-
-
 
         #region NullReferenceAssignmentAndNewAccessors 
 
